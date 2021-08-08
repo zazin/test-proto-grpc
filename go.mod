@@ -1,4 +1,4 @@
-module test-proto-grpc
+module github.com/zazin/test-proto-grpc
 
 go 1.16
 

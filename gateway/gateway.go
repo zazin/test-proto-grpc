@@ -3,11 +3,11 @@ package gateway
 import (
 	"context"
 	"fmt"
+	helloworldpb "github.com/zazin/test-proto-grpc/proto"
 	"google.golang.org/grpc"
 	"io"
 	"log"
 	"net/http"
-	helloworldpb "test-proto-grpc/proto"
 	"time"
 )
 

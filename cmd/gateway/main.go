@@ -4,9 +4,9 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"github.com/zazin/test-proto-grpc/gateway"
 	"log"
 	"net/http"
-	"test-proto-grpc/gateway"
 )
 
 var (

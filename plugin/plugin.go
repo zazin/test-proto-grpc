@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/zazin/test-proto-grpc/gateway"
 	"net/http"
-	"test-proto-grpc/gateway"
 )
 
 func init() {

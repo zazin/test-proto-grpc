@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	helloworldpb "github.com/zazin/test-proto-grpc/proto"
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	helloworldpb "test-proto-grpc/proto"
 )
 
 const portServerHello = ":50051"

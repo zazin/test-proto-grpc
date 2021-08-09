@@ -19,7 +19,12 @@ func HelloPage() http.HandlerFunc {
 		if err != nil {
 			log.Fatalf("Could not connect to service: %v", err)
 		}
-		defer conn.Close()
+		defer func(conn *grpc.ClientConn) {
+			err := conn.Close()
+			if err != nil {
+				log.Fatalf("Could not close connection: %v", err)
+			}
+		}(conn)
 		helloServiceClient := helloworldpb.NewGreeterClient(conn)
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 		defer cancel()
@@ -31,20 +36,20 @@ func HelloPage() http.HandlerFunc {
 		}
 		fmt.Println(response.Message)
 		w.WriteHeader(http.StatusOK)
-		io.WriteString(w, response.Message)
+		io.WriteString(w, `{"success": "grpc"}`)
 	}
 }
 
-func HomePage() http.HandlerFunc {
+/*func HomePage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		io.WriteString(w, `{"success": "yay"}`)
 	}
-}
+}*/
 
 func New(ctx context.Context) (http.Handler, error) {
 	mux := http.NewServeMux()
-	mux.Handle("/test", HelloPage())
-	mux.Handle("/", HomePage())
+	//mux.Handle("/test", HelloPage())
+	mux.Handle("/", HelloPage())
 	return mux, nil
 }

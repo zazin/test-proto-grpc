@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "plugin": {
+    "pattern": ".so",
+    "folder": "./plugin/"
+  },
+  "port": 8000,
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "appointments-apigateway",
+  "read_timeout": "5s",
+  "write_timeout": "5s",
+  "idle_timeout": "5s",
+  "read_header_timeout": "2s",
+  "endpoints": [
+    {
+      "endpoint": "/test",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/",
+          "method": "GET",
+          "encoding": "json",
+          "sd": "static",
+          "host": [
+            "https://enokceyl2qythqw.m.pipedream.net"
+          ],
+          "disable_host_sanitize": false,
+          "is_collection": false,
+          "target": "",
+          "blacklist": [],
+          "extra_config": {
+            "github.com/devopsfaith/krakend/transport/http/client/executor": {
+              "name": "grpc-post"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
